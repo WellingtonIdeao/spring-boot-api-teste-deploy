@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class ConsultaController {
 
     @Autowired
-    private AgendarConsultas agenda;
+    private AgendaConsultas agenda;
 
 
     @PostMapping

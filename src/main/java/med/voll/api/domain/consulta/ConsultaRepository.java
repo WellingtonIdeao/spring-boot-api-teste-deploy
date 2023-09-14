@@ -8,24 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.time.LocalDateTime;
 
 public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
-    @Query("""
-            SELECT m FROM Medico m
-            WHERE
-            m.ativo = true
-            AND
-            m.especialidade = :especialidade
-            AND
-            m.id NOT IN(
-                SELECT c.medico.id FROM Consulta c
-                WHERE
-                c.data = :data
-                AND
-                c.motivoCancelamento is null
-            )
-            ORDER BY rand()
-            LIMIT 1
-            """)
-    Medico escolherMedicoAleatorioLivreNaData(Especialidade especialidade, LocalDateTime data);
 
     Boolean existsByMedicoIdAndDataAndMotivoCancelamentoIsNull(Long idMedico, LocalDateTime data);
 

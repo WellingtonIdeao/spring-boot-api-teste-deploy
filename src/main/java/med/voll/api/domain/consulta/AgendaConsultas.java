@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AgendarConsultas {
+public class AgendaConsultas {
     @Autowired
     private ConsultaRepository repository;
     @Autowired
@@ -53,7 +53,7 @@ public class AgendarConsultas {
         if(dados.especialidade() == null){
             throw new ValidacaoException("Especialidade é obrigatória quando médico não for escolhido!");
         }
-        return this.repository.escolherMedicoAleatorioLivreNaData(dados.especialidade(), dados.data());
+        return this.medicoRepository.escolherMedicoAleatorioLivreNaData(dados.especialidade(), dados.data());
     }
 
     public void cancelar(DadosCancelamentoConsulta dados) {
@@ -64,6 +64,5 @@ public class AgendarConsultas {
 
         var consulta = this.repository.getReferenceById(dados.idConsulta());
         consulta.cancelar(dados.motivo());
-
     }
 }
